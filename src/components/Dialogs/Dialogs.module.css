@@ -15,12 +15,18 @@
     padding: 10px;
 }
 
-.messages {
+.messagesStyle {
     padding: 10px;
 
 }
 
 .message {
     padding: 10px;
+}
 
+.ava_dialog {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    padding: 10px;
 }

@@ -1,6 +1,6 @@
 import s from './Header.module.css'  // for example, s - "style"
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className={s.header}>
             <img

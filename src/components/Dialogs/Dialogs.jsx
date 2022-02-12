@@ -1,37 +1,30 @@
 import s from './Dialogs.module.css';
 import {NavLink} from "react-router-dom";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
+import React from "react";
 
 const Dialogs = (props) => {
+
+    let dialogs = props.diaPage.dialogs.map( dlg => <DialogItem name={dlg.name} id={dlg.id}/> )
+    let messages = props.diaPage.messages.map( msg => <Message message={msg.message} id={msg.id}/> )
+
+    let newMessageElement = React.createRef();
+
+    let sendMessage = () => {
+        let text = newMessageElement.current.value;  // тут тоже обращаемся напрямую к DOM, однако всего лишь считываем, а не меняем, что не так критично
+        alert(text);
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <div className={s.dialog + ' ' + s.active}>
-                    <NavLink to='/dialogs/favourites' className={navData => navData.isActive ? s.active : s.dialog}>Favourites</NavLink>
-                </div>
-                <div className={s.dialog + ' ' + s.active}>
-                    <NavLink to='/dialogs/01' className={navData => navData.isActive ? s.active : s.dialog}>Mashka</NavLink>
-                </div>
-                <div className={s.dialog + ' ' + s.active}>
-                    <NavLink to='/dialogs/02' className={navData => navData.isActive ? s.active : s.dialog}>Lenka</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/03' className={navData => navData.isActive ? s.active : s.dialog}>Dashka</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/04' className={navData => navData.isActive ? s.active : s.dialog}>Pashka</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/05' className={navData => navData.isActive ? s.active : s.dialog}>Mishka</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to='/dialogs/06' className={navData => navData.isActive ? s.active : s.dialog}>Sashka</NavLink>
-                </div>
+                {dialogs}
             </div>
-            <div className={s.messages}>
-                <div className={s.message}>Yo-Yo</div>
-                <div className={s.message}>Man</div>
-                <div className={s.message}>Hooli</div>
-                <div className={s.message}>Grusteam</div>
+            <div className={s.messagesStyle}>
+                {messages}
+                <textarea ref={newMessageElement}></textarea>
+                <button onClick={sendMessage}>Send</button>
             </div>
         </div>
     )
