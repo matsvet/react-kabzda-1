@@ -6,13 +6,13 @@ const MyPosts = (props) => {
 
     let posts = props.posts.map(pst =>
         <Post
+            key={pst.id}
             message={pst.message}
             likes={pst.likesCount}
             id={pst.id}
         />)
 
-    // функция - обработчик событий
-    let addPost = () => {
+    let onAddPost = () => {
         props.addPost();
     }
 
@@ -38,8 +38,7 @@ const MyPosts = (props) => {
                 <div>
                     {/*callback - мы отдаём кнопке стрелочную анонимную функцию (именно саму функцию, а не её вызов!), чтобы она по клику вызывала ее. Т.е. неправильно вызывать её самим - без стрелочной фнукции, работать не будет
                     либо объявляем функцию заранее, и тоже передаем не вызов функции, а просто имя, чтобы уже кнопка вызывала её*/}
-                    <button onClick={addPost}>Add post</button>
-                    <button>Remove</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>

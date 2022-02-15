@@ -1,19 +1,19 @@
 import s from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 
 const Dialogs = (props) => {
 
-    let dialogs = props.diaPage.dialogs.map( dlg => <DialogItem name={dlg.name} id={dlg.id}/> )
-    let messages = props.diaPage.messages.map( msg => <Message message={msg.message} id={msg.id}/> )
+    let dialogs = props.dialogs.map(dlg => <DialogItem name={dlg.name} key={dlg.id} id={dlg.id}/>)
+    let messages = props.messages.map(msg => <Message message={msg.message} key={msg.id} id={msg.id}/>)
 
-    let newMessageElement = React.createRef();
-
-    let sendMessage = () => {
-        let text = newMessageElement.current.value;  // тут тоже обращаемся напрямую к DOM, однако всего лишь считываем, а не меняем, что не так критично
-        alert(text);
+    let onMessageChange = (event) => {
+        let text = event.target.value;  // event сам определится как текстареа, т.к. в ней проищошло событие onChange
+        props.onMessageChange(text);
+    }
+    let onSendMessageClick = () => {
+        props.sendMessage();
     }
 
     return (
@@ -23,8 +23,10 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messagesStyle}>
                 {messages}
-                <textarea ref={newMessageElement}></textarea>
-                <button onClick={sendMessage}>Send</button>
+                <textarea onChange={onMessageChange}
+                          value={props.newMessageText}
+                          placeholder="Enter your message"/>
+                <button onClick={onSendMessageClick}>Send</button>
             </div>
         </div>
     )

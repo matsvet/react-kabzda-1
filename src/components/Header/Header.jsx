@@ -1,4 +1,5 @@
 import s from './Header.module.css'  // for example, s - "style"
+import React from "react";
 
 const Header = (props) => {
     return (
