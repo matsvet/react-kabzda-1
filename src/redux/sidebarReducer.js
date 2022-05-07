@@ -12,7 +12,7 @@ let initialState = {friends: [
         {
             id: 3,
             name: "Chel",
-            imgSrc: "https://yt3.ggpht.com/ytc/AKedOLTaNSpsJHUJDzU0b_287dpfuZvQR9G0PV_Pm1el9Q=s900-c-k-c0x00ffffff-no-rj"
+            imgSrc: "https://www.clipartmax.com/png/full/344-3444897_chimp-drawing-smoking-cool-monkey-logo.png"
         },
     ]}
 

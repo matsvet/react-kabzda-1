@@ -1,26 +1,32 @@
 import './App.css';
+import 'antd/dist/antd.css'
 import {Route, Routes} from "react-router";
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import React from "react";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from "./components/Dialogs/Dialogs";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = (props) => {
     return (
         <div className='app-wrapper'>
-            <Header/>
+            <HeaderContainer/>
             <Navbar state={props.store.getState().sidebarBlock}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile/>}/>
-                    <Route path='/dialogs/' element={<DialogsContainer/>}/>
+                    <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                    <Route path='/profile' element={<ProfileContainer/>}/>
+                    <Route path='/dialogs' element={<DialogsContainer/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/news' element={<News/>}/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>
+                    <Route path='/login' element={<Login/>}/>
                 </Routes>
             </div>
         </div>

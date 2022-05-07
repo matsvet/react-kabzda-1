@@ -5,3 +5,13 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.tipicalDiv {
+    padding: 20px;
+}
+
+.fullName {
+    padding: 20px;
+    font-weight: bold;
+    font-size: larger;
+}
