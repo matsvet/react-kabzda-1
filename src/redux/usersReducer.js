@@ -92,9 +92,10 @@ export const changeFollowingInProgressAC = (isFollowingInProgress, userId) => ({
     userId
 })
 
-export const getUsersTC = (currentPage, pageSize) => (dispatch) => {
+export const requestUsersTC = (page, pageSize) => (dispatch) => {
     dispatch(changeFetchingAC(true))
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
+    dispatch(setCurrentPageAC(page))
+    usersAPI.getUsers(page, pageSize).then(data => {
         dispatch(setUsersAC(data.items))
         dispatch(setUsersTotalCountAC(data.totalCount))
         dispatch(changeFetchingAC(false))

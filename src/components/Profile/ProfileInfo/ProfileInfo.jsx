@@ -9,7 +9,6 @@ const ProfileInfo = (props) => {
     if (!props.profile) {  // ===   if (props.profile === null || undefined)
         return <Preloader/>
     }
-
     return (
         <div>
             <div>
@@ -20,9 +19,13 @@ const ProfileInfo = (props) => {
                 <div>
                     <img src={props.profile.photos.large}/>
                     <h1>{props.profile.fullName}</h1>
-                    <ProfileStatus status={'Govna Poesh'}/>
+                    <ProfileStatus status={props.status}
+                                   updateStatus={props.updateStatus}
+                    />
                 </div>
                 <div className={s.tipicalDiv}>
+                    {props.status}
+                    <div/>
                     {props.profile.aboutMe}
                     <Checkbox className={s.tipicalDiv} checked={props.profile.lookingForAJob}>Ищу Работу?</Checkbox>
                 </div>

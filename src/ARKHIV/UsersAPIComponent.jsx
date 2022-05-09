@@ -1,6 +1,6 @@
 import React from "react";
 import * as axios from "axios";
-import Users from "./Users";
+import Users from "../components/Users/Users";
 
 
 

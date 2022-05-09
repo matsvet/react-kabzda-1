@@ -17,7 +17,6 @@ let initialState = {
         {id: 5, name: 'Mishka'},
         {id: 6, name: 'Sashka'}
     ],
-    newMessageText: "",
 }
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -27,30 +26,20 @@ const dialogsReducer = (state = initialState, action) => {
                 messages: [
                     ...state.messages, {   // забираем старые элементы
                         id: 11,
-                        message: state.newMessageText
+                        message: action.newMessageBody
                     }  // добавляем новый элемент в конец вместо пуш
                 ],
-                newMessageText: ''
             };
             // stateCopy.messages.push(newMessage);
             // stateCopy.newMessageText = '';
-        case UPDATE_NEW_TEXT_MESSAGE:
-            return  {
-                ...state,
-                newMessageText: action.newText
-            };
         default:
             return state;
     }
 }
 
-export const sendMessageCreator = () => ({
-    type: SEND_MESSAGE
-})
-
-export const updateNewMessageCreator = (text) => ({
-    type: UPDATE_NEW_TEXT_MESSAGE,
-    newText: text
+export const sendMessageAC = (newMessageBody) => ({
+    type: SEND_MESSAGE,
+    newMessageBody
 })
 
 export default dialogsReducer;
